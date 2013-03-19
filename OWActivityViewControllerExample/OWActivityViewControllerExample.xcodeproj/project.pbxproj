@@ -38,6 +38,7 @@
 		4A1FECAF16F75E680003CC31 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECAE16F75E680003CC31 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4A1FECB116F75E780003CC31 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECB016F75E780003CC31 /* Twitter.framework */; };
 		4A1FECB316F75E7F0003CC31 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECB216F75E7F0003CC31 /* AssetsLibrary.framework */; };
+		4A1FED3016F84DF80003CC31 /* OWSinaWeiboActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FED2F16F84DF80003CC31 /* OWSinaWeiboActivity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		4A1FECAE16F75E680003CC31 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4A1FECB016F75E780003CC31 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		4A1FECB216F75E7F0003CC31 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4A1FED2E16F84DF80003CC31 /* OWSinaWeiboActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSinaWeiboActivity.h; sourceTree = "<group>"; };
+		4A1FED2F16F84DF80003CC31 /* OWSinaWeiboActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSinaWeiboActivity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 				4A1FEC8816F7548A0003CC31 /* OWSafariActivity.m */,
 				4A1FEC8916F7548A0003CC31 /* OWSaveToCameraRollActivity.h */,
 				4A1FEC8A16F7548A0003CC31 /* OWSaveToCameraRollActivity.m */,
+				4A1FED2E16F84DF80003CC31 /* OWSinaWeiboActivity.h */,
+				4A1FED2F16F84DF80003CC31 /* OWSinaWeiboActivity.m */,
 				4A1FEC8D16F7548A0003CC31 /* OWTwitterActivity.h */,
 				4A1FEC8E16F7548A0003CC31 /* OWTwitterActivity.m */,
 			);
@@ -307,6 +312,7 @@
 				4A1FECA616F7548A0003CC31 /* OWSafariActivity.m in Sources */,
 				4A1FECA716F7548A0003CC31 /* OWSaveToCameraRollActivity.m in Sources */,
 				4A1FECA916F7548A0003CC31 /* OWTwitterActivity.m in Sources */,
+				4A1FED3016F84DF80003CC31 /* OWSinaWeiboActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

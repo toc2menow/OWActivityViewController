@@ -27,6 +27,7 @@
     //
     OWFacebookActivity *facebookActivity = [[OWFacebookActivity alloc] init];
     OWTwitterActivity *twitterActivity = [[OWTwitterActivity alloc] init];
+    OWSinaWeiboActivity *sinaWeiboActivity = [[OWSinaWeiboActivity alloc] init];
     OWMessageActivity *messageActivity = [[OWMessageActivity alloc] init];
     OWMailActivity *mailActivity = [[OWMailActivity alloc] init];
     OWSafariActivity *safariActivity = [[OWSafariActivity alloc] init];
@@ -48,7 +49,7 @@
     // Compile activities into an array, we will pass that array to
     // OWActivityViewController on the next step
     //
-    NSArray *activities = @[facebookActivity, twitterActivity,
+    NSArray *activities = @[facebookActivity, twitterActivity, sinaWeiboActivity,
                             messageActivity, mailActivity, safariActivity,
                             saveToCameraRollActivity, mapsActivity, printActivity,
                             copyActivity, customActivity];

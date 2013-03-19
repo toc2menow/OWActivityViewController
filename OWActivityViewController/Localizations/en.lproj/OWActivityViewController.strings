@@ -17,6 +17,9 @@
 /* Facebook */
 "activity.Facebook.title"="Facebook";
 
+/* Sina Weibo */
+"activity.SinaWeibo.title"="Sina Weibo";
+
 /* Open in Maps */
 "activity.Maps.title"="Open in Maps";
 
