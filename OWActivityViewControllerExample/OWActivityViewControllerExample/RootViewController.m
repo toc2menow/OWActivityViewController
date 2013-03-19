@@ -25,10 +25,7 @@
 {
     // Prepare activities
     //
-    OWFacebookActivity *facebookActivity = [[OWFacebookActivity alloc] init];
     OWTwitterActivity *twitterActivity = [[OWTwitterActivity alloc] init];
-    OWSinaWeiboActivity *sinaWeiboActivity = [[OWSinaWeiboActivity alloc] init];
-    OWMessageActivity *messageActivity = [[OWMessageActivity alloc] init];
     OWMailActivity *mailActivity = [[OWMailActivity alloc] init];
     OWSafariActivity *safariActivity = [[OWSafariActivity alloc] init];
     OWSaveToCameraRollActivity *saveToCameraRollActivity = [[OWSaveToCameraRollActivity alloc] init];
@@ -50,20 +47,29 @@
     // OWActivityViewController on the next step
     //
     
-    NSArray *activities = nil;
-    if( NSClassFromString (@"UIActivityViewController") ) {
-        // ios 6
-        activities = @[facebookActivity, twitterActivity, sinaWeiboActivity,
-                       messageActivity, mailActivity, safariActivity,
-                       saveToCameraRollActivity, mapsActivity, printActivity,
-                       copyActivity, customActivity];
-    } else {
-        // ios 5
-        activities = @[twitterActivity,
-                       messageActivity, mailActivity, safariActivity,
-                       saveToCameraRollActivity, mapsActivity, printActivity,
-                       copyActivity, customActivity];
+    NSMutableArray *activities = [NSMutableArray arrayWithObject:mailActivity];
+    
+    // For some device may not support message (ie, Simulator and iPod Touch).
+    // There is a bug in the Simulator when you configured iMessage under OS X,
+    // for detailed information, refer to: http://stackoverflow.com/questions/9349381/mfmessagecomposeviewcontroller-on-simulator-cansendtext
+    if ([MFMessageComposeViewController canSendText]) {
+        OWMessageActivity *messageActivity = [[OWMessageActivity alloc] init];
+        [activities addObject:messageActivity];
     }
+    
+    [activities addObjectsFromArray:@[saveToCameraRollActivity, twitterActivity]];
+    
+    if( NSClassFromString (@"UIActivityViewController") ) {
+        // ios 6, add facebook and sina weibo activities
+        OWFacebookActivity *facebookActivity = [[OWFacebookActivity alloc] init];
+        OWSinaWeiboActivity *sinaWeiboActivity = [[OWSinaWeiboActivity alloc] init];
+        [activities addObjectsFromArray:@[
+         facebookActivity, sinaWeiboActivity
+         ]];
+    }
+    
+    [activities addObjectsFromArray:@[
+     safariActivity, mapsActivity, printActivity, copyActivity, customActivity]];
     
     // Create OWActivityViewController controller and assign data source
     //
