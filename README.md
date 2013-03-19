@@ -1,24 +1,26 @@
-# REActivityViewController
+# OWActivityViewController
 
-Open source alternative to UIActivityViewController, highly customizable and compatible with iOS 5.0.
+> [OWActivityViewController](https://github.com/brantyoung/OWActivityViewController) is a slim fork of [REActivityViewController](https://github.com/romaonthego/REActivityViewController), with no external dependence, only support iOS integrated Social Network (for iOS 6: Twitter/Facebook/SinaWeibo, for iOS 5: Twitter).
+
+iOS 6 includes deep Twitter, Facebook and SinaWeibo integration in Social.framework. But `UIActivityViewController` won't show Twitter/Facebook/SinaWeibo as share options, if corresponding account is not set up in iOS Settings.
+
+On the apple pre installed apps (ie. Photos app), both Twitter Facebook and SinaWeibo should always appear, tapping them without an account set up in settings prompts you to do so.
+
+The purpose of `OWActivityViewController` is provide an alternative to UIActivityViewController, which:
+
+1. Make third party apps the same behavior as pre installed apps (such as Photos app) under iOS 6
+1. Compatible with iOS 5.0 (lacks Facebook and SinaWeibo support)
+
 It allows to create custom activites with ease, you control their apperance and behavior and no longer restricted to single-color icons as with the default `UIActivity`.
-
-![Screenshot of REActivityViewController](https://github.com/romaonthego/REActivityViewController/raw/master/Screenshot.png "REActivityViewController Screenshot")
 
 > Out of the box activities include:
 
-> * Facebook
-* Twitter
-* VKontakte
-* Tumblr (using XAuth)
+> * Twitter
+* Facebook (only supported in iOS 6)
+* Sina Weibo (only supported in iOS 6)
 * Message
 * Mail
 * Open in Safari
-* Save to Pocket
-* Send to Instapaper
-* Save to Readability
-* Save to Diigo
-* Save to Kippt
 * Save to Album
 * Open in Maps
 * Print
@@ -34,48 +36,12 @@ It allows to create custom activites with ease, you control their apperance and 
 
 ## Demo
 
-First, you need to install dependencies using [CocoaPods](http://cocoapods.org/) package manager in the demo project:
-
-``` bash
-$ pod install
-```
-
-After that, build and run the `REActivityViewControllerExample` project in Xcode to see `REActivityViewController` in action.
-
-If you don't have CocoaPods installed, check section "Installation" below.
+After that, build and run the `OWActivityViewControllerExample` project in Xcode to see `OWActivityViewController` in action.
 
 ## Installation
 
-The recommended approach for installating REActivityViewController is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
+`OWActivityViewController` needs to be linked with the following frameworks:
 
-Install CocoaPods if not already available:
-
-``` bash
-$ [sudo] gem install cocoapods
-$ pod setup
-```
-
-Edit your Podfile and add `REActivityViewController`:
-
-``` bash
-$ edit Podfile
-platform :ios, '5.0'
-pod 'REActivityViewController', '~> 1.5'
-```
-
-Install into your Xcode project:
-
-``` bash
-$ pod install
-```
-
-Add `#include "REActivityViewController.h"` to the top of classes that will use it.
-
-### Manual installation
-
-`REActivityViewController` needs to be linked with the following frameworks:
-
-* QuartzCore
 * AssetsLibrary
 * MessageUI
 * Twitter
@@ -84,69 +50,51 @@ The following framework must be added as optional (weak reference):
 
 * Social
 
-Dependencies:
-
-* [AFNetworking](https://github.com/AFNetworking/AFNetworking) ~> 1.1
-* [Facebook-iOS-SDK](https://github.com/facebook/facebook-ios-sdk) ~> 3.2
-* [DEFacebookComposeViewController](https://github.com/sakrist/FacebookSample) ~> 1.0.0
-* [REComposeViewController](https://github.com/romaonthego/REComposeViewController) ~> 2.0
-* [PocketAPI](https://github.com/Pocket/Pocket-ObjC-SDK) ~> 1.0.2
-* [SFHFKeychainUtils](https://github.com/ldandersen/scifihifi-iphone/tree/master/security) ~> 0.0.1
-* [AFXAuthClient](https://github.com/romaonthego/AFXAuthClient) ~> 1.0.5
-
 ## Example Usage
 
-### Configuring & presenting REActivityViewController
+### Configuring & presenting OWActivityViewController
 
-Presenting `REActivityViewController` is easy as 1-2-3. First, prepare activities that you're going to use.
+Presenting `OWActivityViewController` is easy as 1-2-3. First, prepare activities that you're going to use.
 You can create custom activities right here in your code, no need to wrap your head around subclassing or providers as with `UIActivityViewController`.
 Once your activities are ready, prepare data source (userInfo) and present the view controller.
 
 ``` objective-c
 // Prepare activities
 //
-REFacebookActivity *facebookActivity = [[REFacebookActivity alloc] init];
-RETwitterActivity *twitterActivity = [[RETwitterActivity alloc] init];
-REVKActivity *vkActivity = [[REVKActivity alloc] initWithClientId:@"VK APP ID"];
-RETumblrActivity *tumblrActivity = [[RETumblrActivity alloc] initWithConsumerKey:@"CONSUMER KEY" consumerSecret:@"CONSUMER SECRET"];
-REMessageActivity *messageActivity = [[REMessageActivity alloc] init];
-REMailActivity *mailActivity = [[REMailActivity alloc] init];
-RESafariActivity *safariActivity = [[RESafariActivity alloc] init];
-REPocketActivity *pocketActivity = [[REPocketActivity alloc] initWithConsumerKey:@"CONSUMER KEY"];
-REInstapaperActivity *instapaperActivity = [[REInstapaperActivity alloc] init];
-REReadabilityActivity *readabilityActivity = [[REReadabilityActivity alloc] initWithConsumerKey:@"CONSUMER KEY" consumerSecret:@"CONSUMER SECRET"];
-REDiigoActivity *diigoActivity = [[REDiigoActivity alloc] initWithAPIKey:@"API KEY"];
-REKipptActivity *kipptActivity = [[REKipptActivity alloc] init];
-RESaveToCameraRollActivity *saveToCameraRollActivity = [[RESaveToCameraRollActivity alloc] init];
-REMapsActivity *mapsActivity = [[REMapsActivity alloc] init];
-REPrintActivity *printActivity = [[REPrintActivity alloc] init];
-RECopyActivity *copyActivity = [[RECopyActivity alloc] init];
+OWFacebookActivity *facebookActivity = [[OWFacebookActivity alloc] init];
+OWTwitterActivity *twitterActivity = [[OWTwitterActivity alloc] init];
+OWMessageActivity *messageActivity = [[OWMessageActivity alloc] init];
+OWMailActivity *mailActivity = [[OWMailActivity alloc] init];
+OWSafariActivity *safariActivity = [[OWSafariActivity alloc] init];
+OWSaveToCameraRollActivity *saveToCameraRollActivity = [[OWSaveToCameraRollActivity alloc] init];
+OWMapsActivity *mapsActivity = [[OWMapsActivity alloc] init];
+OWPrintActivity *printActivity = [[OWPrintActivity alloc] init];
+OWCopyActivity *copyActivity = [[OWCopyActivity alloc] init];
 
 // Create some custom activity
 //
-REActivity *customActivity = [[REActivity alloc] initWithTitle:@"Custom"
-                                                         image:[UIImage imageNamed:@"REActivityViewController.bundle/Icon_Custom"]
-                                                   actionBlock:^(REActivity *activity, REActivityViewController *activityViewController) {
+OWActivity *customActivity = [[OWActivity alloc] initWithTitle:@"Custom"
+                                                         image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Custom"]
+                                                   actionBlock:^(OWActivity *activity, OWActivityViewController *activityViewController) {
                                                        [activityViewController dismissViewControllerAnimated:YES completion:^{
                                                            NSLog(@"Info: %@", activityViewController.userInfo);
                                                        }];
                                                    }];
 
 // Compile activities into an array, we will pass that array to
-// REActivityViewController on the next step
+// OWActivityViewController on the next step
 //
-NSArray *activities = @[facebookActivity, twitterActivity, vkActivity, tumblrActivity,
-messageActivity, mailActivity, safariActivity, pocketActivity, instapaperActivity,
-readabilityActivity, diigoActivity, kipptActivity, saveToCameraRollActivity, mapsActivity,
+NSArray *activities = @[facebookActivity, twitterActivity, 
+messageActivity, mailActivity, safariActivity, saveToCameraRollActivity, mapsActivity,
 printActivity, copyActivity, customActivity];
 
-// Create REActivityViewController controller and assign data source
+// Create OWActivityViewController controller and assign data source
 //
-REActivityViewController *activityViewController = [[REActivityViewController alloc] initWithViewController:self activities:activities];
+OWActivityViewController *activityViewController = [[OWActivityViewController alloc] initWithViewController:self activities:activities];
 activityViewController.userInfo = @{
     @"image": [UIImage imageNamed:@"Flower.jpg"],
     @"text": @"Hello world!",
-    @"url": [NSURL URLWithString:@"https://github.com/romaonthego/REActivityViewController"],
+    @"url": [NSURL URLWithString:@"https://github.com/brantyoung/OWActivityViewController"],
     @"coordinate": @{@"latitude": @(37.751586275), @"longitude": @(-122.447721511)}
 };
 
@@ -162,17 +110,17 @@ twitterActivity.userInfo = @{@"image": [UIImage imageNamed:@"Flower.jpg"],
 
 ### iPad specific
 
-On iPad, you should use `UIPopoverController` to present `REActivityViewController`.
+On iPad, you should use `UIPopoverController` to present `OWActivityViewController`.
 `_popoverController` property of `UIViewController` is still a private API (sigh), so we'll need to pass it manually:
 `activityViewController.presentingPopoverController = _activityPopoverController;`
 
 ``` objective-c
-// Create REActivityViewController controller and assign data source
+// Create OWActivityViewController controller and assign data source
 //
-REActivityViewController *activityViewController = [[REActivityViewController alloc] initWithViewController:self.navigationController activities:activities];
+OWActivityViewController *activityViewController = [[OWActivityViewController alloc] initWithViewController:self.navigationController activities:activities];
     @"image": [UIImage imageNamed:@"Flower.jpg"],
     @"text": @"Hello world!",
-    @"url": [NSURL URLWithString:@"https://github.com/romaonthego/REActivityViewController"],
+    @"url": [NSURL URLWithString:@"https://github.com/romaonthego/OWActivityViewController"],
     @"coordinate": @{@"latitude": @(37.751586275), @"longitude": @(-122.447721511)}
 };
 
@@ -189,9 +137,9 @@ Please note that our presenting view controller is the navigation controller, so
 Creating custom activitis is super easy:
 
 ``` objective-c
-REActivity *customActivity = [[REActivity alloc] initWithTitle:@"Custom"
-                                                         image:[UIImage imageNamed:@"REActivityViewController.bundle/Icon_Custom"]
-                                                   actionBlock:^(REActivity *activity, REActivityViewController *activityViewController) {
+OWActivity *customActivity = [[OWActivity alloc] initWithTitle:@"Custom"
+                                                         image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Custom"]
+                                                   actionBlock:^(OWActivity *activity, OWActivityViewController *activityViewController) {
                                                        [activityViewController dismissViewControllerAnimated:YES completion:^{
                                                            NSLog(@"Hey, there!");
                                                        }];
@@ -202,7 +150,7 @@ If you want to subclass an activity, add this code into your `init` function, fo
 
 ``` objective-c
 #import "MyCustomActivity.h"
-#import "REActivityViewController.h"
+#import "OWActivityViewController.h"
 
 @implementation MyCustomActivity
 
@@ -210,7 +158,7 @@ If you want to subclass an activity, add this code into your `init` function, fo
 {
     return [super initWithTitle:@"My Activity"
                           image:[UIImage imageNamed:@"My_Icon"]
-                    actionBlock:^(REActivity *activity, REActivityViewController *activityViewController) {
+                    actionBlock:^(OWActivity *activity, OWActivityViewController *activityViewController) {
                         // Your code goes here
                     }];
 }
@@ -224,7 +172,7 @@ If you want to subclass an activity, add this code into your `init` function, fo
 All views are exposed for your customization. Say, you want to change controller background and customize cancel button, here is how you would do it:
 
 ``` objective-c
-REActivityViewController *activityViewController = [[REActivityViewController alloc] initWithViewController:self activities:activities];
+OWActivityViewController *activityViewController = [[OWActivityViewController alloc] initWithViewController:self activities:activities];
 
 activityViewController.activityView.backgroundImageView.image = [UIImage imageNamed:@"My_Cool_Background"];
 [activityViewController.activityView.cancelButton setBackgroundImage:[UIImage imageNamed:@"My_Cool_Button"] forState:UIControlStateNormal];
@@ -239,9 +187,15 @@ Your custom activity icons must be 118x118 pixels and should include gloss, roun
 
 ## Known Issues
 
-* REActivityViewController doesn't support landscape orientation on iPhone, so you'll need to lock your presenting view controller in portrait orientation.
+* OWActivityViewController doesn't support landscape orientation on iPhone, so you'll need to lock your presenting view controller in portrait orientation.
 
 ## Contact
+
+Brant Young
+
+- https://github.com/brantyoung
+
+## Acknowledgement
 
 Roman Efimov
 
@@ -251,8 +205,9 @@ Roman Efimov
 
 ## License
 
-REActivityViewController is available under the MIT license.
+OWActivityViewController is available under the MIT license.
 
+Copyright © 2013 Brant Young.
 Copyright © 2013 Roman Efimov.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
