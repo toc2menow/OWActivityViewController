@@ -31,6 +31,7 @@
     //
     OWFacebookActivity *facebookActivity = [[OWFacebookActivity alloc] init];
     OWTwitterActivity *twitterActivity = [[OWTwitterActivity alloc] init];
+    OWSinaWeiboActivity *sinaWeiboActivity = [[OWSinaWeiboActivity alloc] init];
     OWMessageActivity *messageActivity = [[OWMessageActivity alloc] init];
     OWMailActivity *mailActivity = [[OWMailActivity alloc] init];
     OWSafariActivity *safariActivity = [[OWSafariActivity alloc] init];
@@ -52,11 +53,20 @@
     // Compile activities into an array, we will pass that array to
     // OWActivityViewController on the next step
     //
-    NSArray *activities = @[facebookActivity, twitterActivity,
-                            messageActivity, mailActivity, safariActivity,
-                            saveToCameraRollActivity, mapsActivity, printActivity,
-                            copyActivity, customActivity];
-    
+    NSArray *activities = nil;
+    if( NSClassFromString (@"UIActivityViewController") ) {
+        // ios 6
+        activities = @[facebookActivity, twitterActivity, sinaWeiboActivity,
+                       messageActivity, mailActivity, safariActivity,
+                       saveToCameraRollActivity, mapsActivity, printActivity,
+                       copyActivity, customActivity];
+    } else {
+        // ios 5
+        activities = @[twitterActivity,
+                       messageActivity, mailActivity, safariActivity,
+                       saveToCameraRollActivity, mapsActivity, printActivity,
+                       copyActivity, customActivity];
+    }
     // Create OWActivityViewController controller and assign data source
     //
     OWActivityViewController *activityViewController = [[OWActivityViewController alloc] initWithViewController:self activities:activities];

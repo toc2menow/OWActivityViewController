@@ -36,7 +36,7 @@
 		4A1FECA916F7548A0003CC31 /* OWTwitterActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FEC8E16F7548A0003CC31 /* OWTwitterActivity.m */; };
 		4A1FECAD16F75E620003CC31 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECAC16F75E620003CC31 /* MessageUI.framework */; };
 		4A1FECAF16F75E680003CC31 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECAE16F75E680003CC31 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		4A1FECB116F75E780003CC31 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECB016F75E780003CC31 /* Twitter.framework */; };
+		4A1FECB116F75E780003CC31 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECB016F75E780003CC31 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4A1FECB316F75E7F0003CC31 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1FECB216F75E7F0003CC31 /* AssetsLibrary.framework */; };
 		4A1FED3016F84DF80003CC31 /* OWSinaWeiboActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FED2F16F84DF80003CC31 /* OWSinaWeiboActivity.m */; };
 /* End PBXBuildFile section */
