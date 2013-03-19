@@ -44,11 +44,11 @@ After that, build and run the `OWActivityViewControllerExample` project in Xcode
 
 * AssetsLibrary
 * MessageUI
-* Twitter
 
 The following framework must be added as optional (weak reference):
 
 * Social
+* Twitter
 
 ## Example Usage
 
