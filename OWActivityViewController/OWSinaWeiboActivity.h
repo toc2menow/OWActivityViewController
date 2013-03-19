@@ -1,7 +1,8 @@
 //
-// OWActivities.h
+// OWSinaWeiboActivity.h
 // OWActivityViewController
 //
+// Copyright (c) 2013 Brant Young (https://github.com/brantyoung)
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,13 +24,9 @@
 // THE SOFTWARE.
 //
 
-#import "OWFacebookActivity.h"
-#import "OWTwitterActivity.h"
-#import "OWSinaWeiboActivity.h"
-#import "OWMessageActivity.h"
-#import "OWMailActivity.h"
-#import "OWPrintActivity.h"
-#import "OWCopyActivity.h"
-#import "OWSafariActivity.h"
-#import "OWMapsActivity.h"
-#import "OWSaveToCameraRollActivity.h"
+#import "OWActivity.h"
+#import <Social/Social.h>
+
+@interface OWSinaWeiboActivity : OWActivity
+
+@end
