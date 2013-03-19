@@ -46,19 +46,4 @@
 "button.dismiss"="OK";
 "button.login"="Log In";
 
-/* Email */
-"field.email"="Email";
-
-/* Username */
-"field.username"="User Name";
-
-/* Password */
-"field.password"="Password";
-
-/* We never store your password. */
-"slogan.never.store.password"="Nous ne stockons jamais vos mots de passe";
-
-/* We save your password in a safe place. */
-"slogan.password.storage.is.safe"="Nous stockons vos mots de passe dans le trousseau sécurisé.";
-
 

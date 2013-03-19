@@ -44,19 +44,3 @@
 "button.cancel"="Отмена";
 "button.dismiss"="ОК";
 "button.login"="Войти";
-
-/* Email */
-"field.email"="E-mail";
-
-/* Username */
-"field.username"="Логин";
-
-/* Password */
-"field.password"="Пароль";
-
-/* We never store your password. */
-"slogan.never.store.password"="Мы никогда не храним Ваш пароль.";
-
-/* We save your password in a safe place. */
-"slogan.password.storage.is.safe"="Мы храним Ваш пароль в надежном месте.";
-
