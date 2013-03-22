@@ -1,5 +1,16 @@
 # OWActivityViewController
 
+<table>
+                                                         <tr>
+		<th>iOS 6.x</th>
+		<th>iOS 5.x</th>
+	</tr>
+	<tr>
+		<td><img src="Screenshot-iOS6.png" alt="Screenshot under iOS 5.x" width="320"></td>
+		<td><img src="Screenshot-iOS5.png" alt="Screenshot under iOS 6.x" width="320"></td>
+	</tr>
+</table>
+
 > [OWActivityViewController](https://github.com/brantyoung/OWActivityViewController) is a slim fork of [REActivityViewController](https://github.com/romaonthego/REActivityViewController), with no external dependence, only support iOS integrated Social Network (for iOS 6: Twitter/Facebook/SinaWeibo, for iOS 5: Twitter).
 
 iOS 6 includes deep Twitter, Facebook and SinaWeibo integration in Social.framework. But `UIActivityViewController` won't show Twitter/Facebook/SinaWeibo as share options, if corresponding account is not set up in iOS Settings.
