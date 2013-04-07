@@ -59,10 +59,10 @@
     viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     if (text)
         [facebookViewComposer setInitialText:text];
-    if (url)
-        [facebookViewComposer addURL:url];
     if (image)
         [facebookViewComposer addImage:image];
+    if (url)
+        [facebookViewComposer addURL:url];
     
     [viewController presentViewController:facebookViewComposer animated:YES completion:nil];
 }

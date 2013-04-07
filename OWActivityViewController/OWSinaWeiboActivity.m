@@ -59,10 +59,10 @@
     viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     if (text)
         [sinaWeiboViewComposer setInitialText:text];
-    if (url)
-        [sinaWeiboViewComposer addURL:url];
     if (image)
         [sinaWeiboViewComposer addImage:image];
+    if (url)
+        [sinaWeiboViewComposer addURL:url];
     
     [viewController presentViewController:sinaWeiboViewComposer animated:YES completion:nil];
 }

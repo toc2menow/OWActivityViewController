@@ -71,26 +71,10 @@
     viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     if (text)
         [twitterViewComposer setInitialText:text];
-    if (url)
-        [twitterViewComposer addURL:url];
     if (image)
         [twitterViewComposer addImage:image];
-    
-    [viewController presentViewController:twitterViewComposer animated:YES completion:nil];
-}
-
-- (void)shareFromViewControllerV6:(UIViewController *)viewController text:(NSString *)text url:(NSURL *)url image:(UIImage *)image
-{
-    
-    SLComposeViewController *twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    
-    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    if (text)
-        [twitterViewComposer setInitialText:text];
     if (url)
         [twitterViewComposer addURL:url];
-    if (image)
-        [twitterViewComposer addImage:image];
     
     [viewController presentViewController:twitterViewComposer animated:YES completion:nil];
 }
