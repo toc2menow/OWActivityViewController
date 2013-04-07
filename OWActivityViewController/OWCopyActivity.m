@@ -42,18 +42,20 @@
         [activityViewController dismissViewControllerAnimated:YES completion:nil];
         NSDictionary *userInfo = weakSelf.userInfo ? weakSelf.userInfo : activityViewController.userInfo;
         
+        NSMutableDictionary * pasteboardDict = [NSMutableDictionary dictionary];        
         NSString *text = [userInfo objectForKey:@"text"];
         UIImage *image = [userInfo objectForKey:@"image"];
         NSURL *url = [userInfo objectForKey:@"url"];
         if (text)
-            [UIPasteboard generalPasteboard].string = text;
+            [pasteboardDict setValue:text forKey:@"public.utf8-plain-text"];
         if (url)
-            [UIPasteboard generalPasteboard].URL = url;
+            [pasteboardDict setValue:url forKey:@"public.url"];
         if (image) {
-            NSData *imageData = UIImageJPEGRepresentation(image, 0.75f);
-            [[UIPasteboard generalPasteboard] setData:imageData
-                                    forPasteboardType:[UIPasteboardTypeListImage objectAtIndex:0]];
+            NSData *imageData = [NSData dataWithData:UIImagePNGRepresentation(image)];
+            [pasteboardDict setObject:imageData forKey:@"public.png"];
         }
+        
+        [UIPasteboard generalPasteboard].items = [NSArray arrayWithObject:pasteboardDict];
     };
     
     return self;
