@@ -56,6 +56,10 @@
     
     SLComposeViewController *sinaWeiboViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
     
+    if (!sinaWeiboViewComposer) {
+        return;
+    }
+    
     viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     if (text)
         [sinaWeiboViewComposer setInitialText:text];
