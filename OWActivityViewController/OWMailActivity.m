@@ -67,6 +67,10 @@
             if (subject)
                 [mailComposeViewController setSubject:subject];
             
+            if(![MFMailComposeViewController canSendMail]){
+                return;
+            }
+            
             [activityViewController.presentingController presentViewController:mailComposeViewController animated:YES completion:nil];
         }];
     };
