@@ -98,6 +98,7 @@
 		4AA50C5E16F8907600B51FE9 /* OWSinaWeiboActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSinaWeiboActivity.m; sourceTree = "<group>"; };
 		4AA50C5F16F8907600B51FE9 /* OWTwitterActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWTwitterActivity.h; sourceTree = "<group>"; };
 		4AA50C6016F8907600B51FE9 /* OWTwitterActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWTwitterActivity.m; sourceTree = "<group>"; };
+		79A97977173E4AB4000F8B94 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OWActivityViewController.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +266,7 @@
 				ru,
 				zh_CN,
 				"zh-Hans",
+				de,
 			);
 			mainGroup = 3003A82216BAD54C000E48B9;
 			productRefGroup = 3003A82C16BAD54C000E48B9 /* Products */;
@@ -337,6 +339,7 @@
 				4AA50C4016F8907600B51FE9 /* fr */,
 				4AA50C4116F8907600B51FE9 /* ru */,
 				4AA50C4216F8907600B51FE9 /* zh-Hans */,
+				79A97977173E4AB4000F8B94 /* de */,
 			);
 			name = OWActivityViewController.strings;
 			sourceTree = "<group>";
