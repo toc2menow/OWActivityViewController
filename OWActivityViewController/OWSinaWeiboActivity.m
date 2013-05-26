@@ -54,21 +54,23 @@
 - (void)shareFromViewController:(UIViewController *)viewController text:(NSString *)text url:(NSURL *)url image:(UIImage *)image
 {
     
-    SLComposeViewController *sinaWeiboViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
-    
-    if (!sinaWeiboViewComposer) {
-        return;
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+        SLComposeViewController *sinaWeiboViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+        
+        if (!sinaWeiboViewComposer) {
+            return;
+        }
+        
+        viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        if (text)
+            [sinaWeiboViewComposer setInitialText:text];
+        if (image)
+            [sinaWeiboViewComposer addImage:image];
+        if (url)
+            [sinaWeiboViewComposer addURL:url];
+        
+        [viewController presentViewController:sinaWeiboViewComposer animated:YES completion:nil];
     }
-    
-    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    if (text)
-        [sinaWeiboViewComposer setInitialText:text];
-    if (image)
-        [sinaWeiboViewComposer addImage:image];
-    if (url)
-        [sinaWeiboViewComposer addURL:url];
-    
-    [viewController presentViewController:sinaWeiboViewComposer animated:YES completion:nil];
 }
 
 @end

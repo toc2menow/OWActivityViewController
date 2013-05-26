@@ -61,22 +61,26 @@
     id twitterViewComposer = nil;
     
     if( NSClassFromString (@"UIActivityViewController") ) {
-        // ios 6
-        twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            // ios 6
+            twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        }
     } else {
         // ios 5
         twitterViewComposer = [[TWTweetComposeViewController alloc] init];
     }
     
-    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    if (text)
-        [twitterViewComposer setInitialText:text];
-    if (image)
-        [twitterViewComposer addImage:image];
-    if (url)
-        [twitterViewComposer addURL:url];
-    
-    [viewController presentViewController:twitterViewComposer animated:YES completion:nil];
+    if (twitterViewComposer) {
+        viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        if (text)
+            [twitterViewComposer setInitialText:text];
+        if (image)
+            [twitterViewComposer addImage:image];
+        if (url)
+            [twitterViewComposer addURL:url];
+        
+        [viewController presentViewController:twitterViewComposer animated:YES completion:nil];
+    }
 }
 
 @end

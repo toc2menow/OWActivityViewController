@@ -53,18 +53,19 @@
 
 - (void)shareFromViewController:(UIViewController *)viewController text:(NSString *)text url:(NSURL *)url image:(UIImage *)image
 {
-    
-    SLComposeViewController *facebookViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    
-    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    if (text)
-        [facebookViewComposer setInitialText:text];
-    if (image)
-        [facebookViewComposer addImage:image];
-    if (url)
-        [facebookViewComposer addURL:url];
-    
-    [viewController presentViewController:facebookViewComposer animated:YES completion:nil];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        if (text)
+            [facebookViewComposer setInitialText:text];
+        if (image)
+            [facebookViewComposer addImage:image];
+        if (url)
+            [facebookViewComposer addURL:url];
+        
+        [viewController presentViewController:facebookViewComposer animated:YES completion:nil];
+    }
 }
 
 @end
