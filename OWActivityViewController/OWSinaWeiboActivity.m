@@ -53,8 +53,6 @@
 
 - (void)shareFromViewController:(UIViewController *)viewController text:(NSString *)text url:(NSURL *)url image:(UIImage *)image
 {
-    
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
         SLComposeViewController *sinaWeiboViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
         
         if (!sinaWeiboViewComposer) {
@@ -70,7 +68,6 @@
             [sinaWeiboViewComposer addURL:url];
         
         [viewController presentViewController:sinaWeiboViewComposer animated:YES completion:nil];
-    }
 }
 
 @end

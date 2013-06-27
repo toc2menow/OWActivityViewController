@@ -61,9 +61,10 @@
     id twitterViewComposer = nil;
     
     if( NSClassFromString (@"UIActivityViewController") ) {
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
             // ios 6
             twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        if (!twitterViewComposer) {
+            return;
         }
     } else {
         // ios 5
