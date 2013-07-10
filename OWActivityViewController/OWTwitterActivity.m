@@ -61,14 +61,15 @@
     id twitterViewComposer = nil;
     
     if( NSClassFromString (@"UIActivityViewController") ) {
-            // ios 6
-            twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-            ((SLComposeViewController*)twitterViewComposer).completionHandler = ^(SLComposeViewControllerResult result) {
-                [viewController dismissModalViewControllerAnimated:YES];
-            };
+        // ios 6
+        twitterViewComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         if (!twitterViewComposer) {
             return;
         }
+        
+        ((SLComposeViewController*)twitterViewComposer).completionHandler = ^(SLComposeViewControllerResult result) {
+            [viewController dismissModalViewControllerAnimated:YES];
+        };
     } else {
         // ios 5
         twitterViewComposer = [[TWTweetComposeViewController alloc] init];
