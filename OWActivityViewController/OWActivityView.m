@@ -38,7 +38,7 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 417)];
             _backgroundImageView.image = [UIImage imageNamed:@"OWActivityViewController.bundle/Background"];
-            _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             [self addSubview:_backgroundImageView];
         }
     

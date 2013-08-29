@@ -67,7 +67,7 @@
                                                                          [UIScreen mainScreen].bounds.size.height : 0,
                                                                          self.view.frame.size.width, self.height)
                                                    activities:activities];
-        _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _activityView.activityViewController = self;
         [self.view addSubview:_activityView];
         
