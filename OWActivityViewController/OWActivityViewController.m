@@ -142,6 +142,24 @@
         }];
     }
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // hide cancel button when presented in UIPopoverController
+    self.activityView.cancelButton.hidden = self.presentingPopoverController != nil;
+
+    // remove the inner shadow from the popover
+    if ([NSStringFromClass([self.view.superview class]) isEqualToString:@"UILayoutContainerView"]) {
+        self.view.superview.layer.cornerRadius = 0;
+
+        for (UIView *subview in self.view.superview.subviews) {
+            if ([NSStringFromClass([subview class]) isEqualToString:@"UIImageView"]) {
+                [subview removeFromSuperview];
+            }
+        }
+    }
+}
 
 - (NSInteger)height
 {   

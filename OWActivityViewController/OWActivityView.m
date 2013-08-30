@@ -238,6 +238,10 @@
         frame.origin.y = self.frame.size.height - 47 - 16;
         frame.origin.x = (self.frame.size.width - frame.size.width) / 2.0f;
         _cancelButton.frame = frame;
+
+        CGRect scrollViewFrame = _scrollView.frame;
+        scrollViewFrame.origin.y = 20.f;
+        _scrollView.frame = scrollViewFrame;
     }
 }
 
