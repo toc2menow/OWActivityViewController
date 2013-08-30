@@ -27,6 +27,9 @@
 #import "OWActivityView.h"
 #import "OWActivities.h"
 
+// Check is iPhone5 screen
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface OWActivityViewController : UIViewController {
     UIView *_backgroundView;
 }
@@ -36,8 +39,10 @@
 @property (strong, nonatomic) OWActivityView *activityView;
 @property (weak, nonatomic) UIPopoverController *presentingPopoverController;
 @property (weak, nonatomic) UIViewController *presentingController;
+@property (weak, nonatomic) UIViewController *rootViewController;
 
 - (id)initWithViewController:(UIViewController *)viewController activities:(NSArray *)activities;
 - (void)presentFromRootViewController;
+- (void)presentFromViewController:(UIViewController *)controller;
 
 @end
