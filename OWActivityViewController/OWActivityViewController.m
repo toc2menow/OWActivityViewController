@@ -28,6 +28,8 @@
 
 @interface OWActivityViewController ()
 
+@property (strong, readonly, nonatomic) UIView *backgroundView;
+
 - (NSInteger)height;
 
 @end
@@ -50,7 +52,7 @@
     self = [super init];
     if (self) {
         self.presentingController = viewController;
-        
+
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             _backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
             _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -60,17 +62,17 @@
         } else {
             self.view.frame = CGRectMake(0, 0, 320, 417);
         }
-        
+
         _activities = activities;
         _activityView = [[OWActivityView alloc] initWithFrame:CGRectMake(0,
                                                                          UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ?
                                                                          [UIScreen mainScreen].bounds.size.height : 0,
                                                                          self.view.frame.size.width, self.height)
                                                    activities:activities];
-        _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _activityView.activityViewController = self;
         [self.view addSubview:_activityView];
-        
+
         self.contentSizeForViewInPopover = CGSizeMake(320, self.height - 60);
     }
     return self;
@@ -103,30 +105,76 @@
 - (void)presentFromRootViewController
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
-    [rootViewController addChildViewController:self];
-    [rootViewController.view addSubview:self.view];
-    [self didMoveToParentViewController:rootViewController];
+    [self presentFromViewController:rootViewController];
+}
+
+- (void)presentFromViewController:(UIViewController *)controller
+{
+    self.rootViewController = controller;
+    [controller addChildViewController:self];
+    [controller.view addSubview:self.view];
+    [self didMoveToParentViewController:controller];
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
     [super didMoveToParentViewController:parent];
+    _backgroundView.frame = self.rootViewController.view.bounds;
+
+    __typeof (&*self) __weak weakSelf = self;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [UIView animateWithDuration:0.4 animations:^{
-            _backgroundView.alpha = 0.4;
-            
-            CGRect frame = _activityView.frame;
-            frame.origin.y = self.view.frame.size.height - self.height;
-            _activityView.frame = frame;
+            weakSelf.backgroundView.alpha = 0.4;
+
+            CGRect frame = weakSelf.activityView.frame;
+
+            UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+            if (UIInterfaceOrientationIsPortrait(interfaceOrientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                frame.origin.y = weakSelf.rootViewController.view.frame.size.height - self.height;
+            } else {
+                if (_activities.count <= 4) {
+                    frame.origin.y = weakSelf.rootViewController.view.frame.size.width - self.height;
+                } else {
+                    frame.origin.y = [parent isKindOfClass:[UINavigationController class]] ? 20 : -10;
+                }
+            }
+            weakSelf.activityView.frame = frame;
         }];
+    }
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // hide cancel button when presented in UIPopoverController
+    self.activityView.cancelButton.hidden = self.presentingPopoverController != nil;
+
+    // remove the inner shadow from the popover
+    if ([NSStringFromClass([self.view.superview class]) isEqualToString:@"UILayoutContainerView"]) {
+        self.view.superview.layer.cornerRadius = 0;
+
+        for (UIView *subview in self.view.superview.subviews) {
+            if ([NSStringFromClass([subview class]) isEqualToString:@"UIImageView"]) {
+                [subview removeFromSuperview];
+            }
+        }
     }
 }
 
 - (NSInteger)height
 {   
-    if (_activities.count <= 3) return 214;
-    if (_activities.count <= 6) return 317;
-    return 417;
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (_activities.count <= 3) return 214;
+        if (_activities.count <= 6) return 317;
+        if (IS_IPHONE_5 && _activities.count > 9) {
+            return 517;
+        }
+        return 417;
+    } else {
+        if (_activities.count <= 4) return 214;
+        return 310;
+    }
 }
 
 - (void)viewDidLoad
@@ -154,23 +202,38 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return UIInterfaceOrientationMaskAll;
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (BOOL)shouldAutorotate
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return YES;
-    return NO;
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return YES;
-    return (orientation == UIInterfaceOrientationPortrait);
+    return YES;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        __typeof (&*self) __weak weakSelf = self;
+        CGRect frame = weakSelf.activityView.frame;
+
+        if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+            frame.origin.y = weakSelf.rootViewController.view.frame.size.height - self.height;
+        } else {
+            if (_activities.count <= 4) {
+                frame.origin.y = weakSelf.rootViewController.view.frame.size.width - self.height;
+            } else {
+                frame.origin.y = [weakSelf.rootViewController isKindOfClass:[UINavigationController class]] ? 20 : -10;
+            }
+        }
+
+        frame.size.height = self.height;
+        weakSelf.activityView.frame = frame;
+    }
 }
 
 @end
