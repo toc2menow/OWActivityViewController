@@ -196,11 +196,6 @@ Your custom activity icons must be 118x118 pixels and should include gloss, roun
 2. Adjust canvas size to be 118x118, so the top part of the icon touches top part of the canvas.
 3. Add drop shadow to the icon layer: angle 90, opacity 40%, distance 2px, size 2px.
 
-
-## Known Issues
-
-* OWActivityViewController doesn't support landscape orientation on iPhone, so you'll need to lock your presenting view controller in portrait orientation.
-
 ## Contact
 
 Brant Young
