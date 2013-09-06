@@ -25,6 +25,7 @@
 
 #import "OWActivityViewController.h"
 #import "OWActivityView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface OWActivityViewController ()
 
