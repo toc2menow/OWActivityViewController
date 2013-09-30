@@ -31,7 +31,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.Twitter.title", @"OWActivityViewController", @"Twitter")
+    self = [super initWithTitle:NSLocalizedString(@"activity.Twitter.title", @"Twitter")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Twitter"]
                     actionBlock:nil];
     

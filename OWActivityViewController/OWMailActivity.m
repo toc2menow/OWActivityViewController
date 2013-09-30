@@ -31,7 +31,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.Mail.title", @"OWActivityViewController", @"Mail")
+    self = [super initWithTitle:NSLocalizedString(@"activity.Mail.title", @"Mail")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Mail"]
                     actionBlock:nil];
     

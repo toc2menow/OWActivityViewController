@@ -30,7 +30,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.Safari.title", @"OWActivityViewController", @"Open in Safari")
+    self = [super initWithTitle:NSLocalizedString(@"activity.Safari.title", @"Open in Safari")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Safari"]
                     actionBlock:nil];
     

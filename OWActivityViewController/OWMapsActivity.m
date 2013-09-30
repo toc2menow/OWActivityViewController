@@ -30,7 +30,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.Maps.title", @"OWActivityViewController", @"Open in Maps")
+    self = [super initWithTitle:NSLocalizedString(@"activity.Maps.title", @"Open in Maps")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Maps"]
                     actionBlock:nil];
     

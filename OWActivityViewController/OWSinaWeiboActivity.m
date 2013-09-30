@@ -30,7 +30,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.SinaWeibo.title", @"OWActivityViewController", @"Sina Weibo")
+    self = [super initWithTitle:NSLocalizedString(@"activity.SinaWeibo.title", @"Sina Weibo")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Weibo"]
                     actionBlock:nil];
     if (!self)

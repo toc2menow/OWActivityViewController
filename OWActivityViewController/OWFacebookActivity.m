@@ -30,7 +30,7 @@
 
 - (id)init
 {
-    self = [super initWithTitle:NSLocalizedStringFromTable(@"activity.Facebook.title", @"OWActivityViewController", @"Facebook")
+    self = [super initWithTitle:NSLocalizedString(@"activity.Facebook.title", @"Facebook")
                           image:[UIImage imageNamed:@"OWActivityViewController.bundle/Icon_Facebook"]
                     actionBlock:nil];
     if (!self)
